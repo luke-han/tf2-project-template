@@ -1,0 +1,28 @@
+---
+exp:
+  name: "pix2pix_facades"
+  experiment_dir: "experiments/"
+dataset:
+  name: "facades"
+  image_size: 256
+  data_loader:
+    type: "pix2pix"
+    resize_ratio_before_crop: 1.12
+    shuffle_buffer_size: 500
+model:
+  structure: "pix2pix"
+  generator:
+    model: "unet"
+    lr: 0.0002
+    beta1: 0.5
+    adversarial_weight: 1
+    l1_weight: 100
+  discriminator:
+    model: "patchgan"
+    lr: 0.0002
+    beta1: 0.5
+trainer:
+  num_epochs: 150
+  batch_size: 4
+  checkpoint_freq: 10
+  predict_freq: 20
